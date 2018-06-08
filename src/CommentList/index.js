@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import PropTypes from 'prop-types'
 import Comment from '../Comment'
+import CommentForm from '../CommentForm'
 
 class CommentList extends Component {
   static propTypes = {
@@ -26,6 +27,7 @@ class CommentList extends Component {
           {isOpen && comments.map(comment => (
             <Comment comment={comment} key={comment.id} />
           ))}
+          {isOpen && <CommentForm />}
         </ul>
       </Fragment>
     )
