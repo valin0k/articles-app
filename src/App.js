@@ -1,20 +1,21 @@
 import React, {Component, Fragment} from 'react'
 import {render} from 'react-dom'
-import PropTypes from 'prop-types'
+import {Provider} from 'react-redux'
 import ArticleList from './ArticleList'
 import Filters from './Filters'
+import store from './store'
 
 class App extends Component {
-  static propTypes = {
-
-  }
-
   render() {
     return(
-      <Fragment>
-        <Filters />
-        <ArticleList />
-      </Fragment>
+
+      <Provider store={store}>
+        <Fragment>
+          <Filters />
+          <ArticleList />
+        </Fragment>
+      </Provider>
+
     )
   }
 }

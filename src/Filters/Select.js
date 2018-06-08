@@ -1,20 +1,17 @@
 import React, {Component} from 'react'
 import ReactSelect from 'react-select'
+import {connect} from 'react-redux'
+import {setSelectFilter} from '../AC'
 
 import 'react-select/dist/react-select.css'
-import {articles} from '../sampleArticles'
 
 class Select extends Component {
-  state = {
-    selectedOptions: []
-  }
-
   handleChange = (selectedOptions) => {
-    this.setState({selectedOptions})
+    this.props.setSelectFilter(selectedOptions)
   }
 
   render() {
-    const {selectedOptions} = this.state
+    const {articles, selectedOptions} = this.props
     const options = articles.map(article => ({
       value: article.id,
       label: article.title
@@ -25,10 +22,13 @@ class Select extends Component {
         onChange={this.handleChange}
         value={selectedOptions}
         options={options}
-        multi={true}
+        multi
       />
     )
   }
 }
 
-export default Select
+export default connect(({articles, filters}) => ({
+  articles,
+  selectedOptions: filters.select
+}), {setSelectFilter})(Select)

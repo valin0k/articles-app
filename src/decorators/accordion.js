@@ -15,6 +15,7 @@ export default WrappedComponent => class Accordion extends Component {
       <WrappedComponent
         openItemId={openItemId}
         handleToggleItem={this.handleToggleItem}
+        {...this.props}
       />
     )
   }

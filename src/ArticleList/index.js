@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {articles} from '../sampleArticles'
+import {connect} from 'react-redux'
 import Article from '../Article'
 import accordion from '../decorators/accordion'
 
@@ -12,19 +12,22 @@ class ArticleList extends Component {
   }
 
   render() {
+    const {articles} = this.props
     const {openItemId, handleToggleItem} = this.props
     return(
       <ul>
-          {articles.map(article => (
-            <Article
-              article={article}
-              isOpen={article.id === openItemId}
-              toggleOpen={handleToggleItem}
-              key={article.id} />
-          ))}
+        {articles.map(article => (
+          <Article
+            article={article}
+            isOpen={article.id === openItemId}
+            toggleOpen={handleToggleItem}
+            key={article.id} />
+        ))}
       </ul>
     )
   }
 }
 
-export default accordion(ArticleList)
+export default connect(({articles}) => ({
+  articles
+}))(accordion(ArticleList))
