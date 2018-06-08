@@ -28,6 +28,15 @@ class ArticleList extends Component {
   }
 }
 
-export default connect(({articles}) => ({
-  articles
+const filtrateArticles = (articles, filters) => {
+  const {select, dateRange} = filters
+  return articles.filter(article => (
+    (!select.length || select.some(selected => selected.value === article.id))
+    && (!dateRange.from || Date.parse(article.date) > Date.parse(dateRange.from))
+    && (!dateRange.to || Date.parse(article.date) < Date.parse(dateRange.to))
+  ))
+}
+
+export default connect(({articles, filters}) => ({
+  articles: filtrateArticles(articles, filters)
 }))(accordion(ArticleList))
