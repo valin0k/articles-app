@@ -25,7 +25,11 @@
     "webpack-dev-server": "^2.0.0"
   },
   "dependencies": {
+    "css-loader": "^0.28.11",
     "react": "*",
-    "react-dom": "*"
+    "react-day-picker": "^7.1.9",
+    "react-dom": "*",
+    "react-select": "^1.2.1",
+    "style-loader": "^0.21.0"
   }
 }
