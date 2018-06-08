@@ -9,7 +9,6 @@ export default WrappedComponent => class Accordion extends Component {
     this.setState((prevState) => ({openItemId: id === prevState.openItemId ? '' : id}))
   }
 
-
   render() {
     const {openItemId} = this.state
     return(

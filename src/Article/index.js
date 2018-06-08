@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import CommentList from '../CommentList'
 
 class Article extends Component {
   static propTypes = {
@@ -7,9 +8,10 @@ class Article extends Component {
     toggleOpen: PropTypes.func
   }
 
-  getArticleBody = () => (
-    <div>{this.props.article.text}</div>
-  )
+  getArticleBody = ({text, comments}) => [
+    <div key={1}>{text}</div>,
+    <CommentList key={2} comments={comments} />
+  ]
 
   handleArticleClick = e => {
     this.props.toggleOpen(this.props.article.id)
@@ -21,7 +23,7 @@ class Article extends Component {
       <li>
         <b>{article.title}</b>
         <button onClick={this.handleArticleClick}>{isOpen ? 'Close' : 'Open'}</button>
-        {isOpen && this.getArticleBody()}
+        {isOpen && this.getArticleBody(article)}
       </li>
     )
   }
