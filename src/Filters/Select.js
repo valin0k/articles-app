@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import ReactSelect from 'react-select'
 import {connect} from 'react-redux'
 import {setSelectFilter} from '../AC'
+import {mapToArr} from '../helpers'
 
 import 'react-select/dist/react-select.css'
 
@@ -29,6 +30,6 @@ class Select extends Component {
 }
 
 export default connect(({articles, filters}) => ({
-  articles,
+  articles: mapToArr(articles),
   selectedOptions: filters.select
 }), {setSelectFilter})(Select)

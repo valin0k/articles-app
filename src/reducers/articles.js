@@ -1,14 +1,17 @@
 import {normalizedArticles} from '../sampleArticles'
 import {DELETE_ARTICLE} from '../constants/actions'
+import {arrToMap} from '../helpers'
 
-const defaultState = normalizedArticles || []
+const defaultState = arrToMap(normalizedArticles) || {}
 
 export default (state = defaultState, action) => {
   const {type, payload} = action
 
-  switch(type) {
+  switch (type) {
     case DELETE_ARTICLE:
-      return state.filter(article => article.id !== payload.id)
+      const copyArticles = Object.assign({}, state)
+      delete copyArticles[payload.id]
+      return copyArticles
   }
 
   return state
