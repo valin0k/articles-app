@@ -1,23 +1,27 @@
 import React, {Component} from 'react'
+import {addComment} from '../AC'
+import {connect} from 'react-redux'
 
 import './style.css'
 
 const FIELDS = [{
-    name: 'user',
-    min: 5,
-    max: 10
-  }, {
-    name: 'text',
-    min: 10,
-    max: 20
-  }
+  name: 'user',
+  min: 5,
+  max: 10
+}, {
+  name: 'text',
+  min: 10,
+  max: 20
+}
 ]
 
 class CommentForm extends Component {
-  state = {
+  getInitialState = () => ({
     user: '',
     text: ''
-  }
+  })
+
+  state = this.getInitialState()
 
   handleFieldChange = fieldName => e => {
     this.setState({
@@ -25,19 +29,32 @@ class CommentForm extends Component {
     })
   }
 
-  getClassName = field => (
-    !this.state[field.name].length
-    || this.state[field.name].length > field.min
-    && this.state[field.name].length < field.max
-    ? '' : 'validate-error'
+  validateFields = fields => (
+    fields.every(({name, min, max}) => (
+      this.state[name].length > min && this.state[name].length < max
+    ))
+  )
+
+
+
+  getClassName = ({name, min, max}) => (
+    !this.state[name].length ||
+    this.state[name].length > min &&
+    this.state[name].length < max
+      ? '' : 'validate-error'
   )
 
   handleFormSubmit = e => {
-    console.info("__submit form__" )
+    if (!this.validateFields(FIELDS)) return
+
+    const {user, text} = this.state
+    this.props.addComment({user, text}, this.props.articleId)
+
+    this.setState(this.getInitialState())
   }
 
-  render() {
-    return(
+  render () {
+    return (
       <ul>
         {FIELDS.map(field => (
           <input
@@ -56,4 +73,4 @@ class CommentForm extends Component {
   }
 }
 
-export default CommentForm
+export default connect(null, {addComment})(CommentForm)

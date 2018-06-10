@@ -11,16 +11,16 @@ class Article extends Component {
     toggleOpen: PropTypes.func
   }
 
-  getArticleBody = ({text, comments}) => [
+  getArticleBody = ({text, comments, id}) => [
     <div key={1}>{text}</div>,
-    <CommentList key={2} comments={comments} />
+    <CommentList key={2} articleId={id} comments={comments} />
   ]
 
   handleToggleOpen = e => {
     this.props.toggleOpen(this.props.article.id)
   }
 
-  handleDelete = () => {
+  handleDelete = e => {
     this.props.deleteArticle(this.props.article.id)
   }
 

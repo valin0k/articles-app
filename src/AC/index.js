@@ -1,7 +1,8 @@
 import {
   SET_SELECT_FILTER,
   SET_DATE_FILTER,
-  DELETE_ARTICLE
+  DELETE_ARTICLE,
+  ADD_COMMENT
 } from '../constants/actions'
 
 export function deleteArticle(id) {
@@ -24,5 +25,16 @@ export function setDateFilter(date) {
   return {
     type: SET_DATE_FILTER,
     payload: {date}
+  }
+}
+
+export function addComment(comment, articleId) {
+  return {
+    type: ADD_COMMENT,
+    generateId: true,
+    payload: {
+      comment,
+      articleId
+    }
   }
 }

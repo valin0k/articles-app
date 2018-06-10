@@ -1,6 +1,10 @@
-import {createStore} from 'redux'
+import {createStore, applyMiddleware} from 'redux'
 import reducers from '../reducers'
+import generateId from '../middlewares/generateId'
 
-const store = createStore(reducers)
+const enhanceStore = applyMiddleware(generateId)
+
+const store = createStore(reducers, {}, enhanceStore)
+
 
 export default store
