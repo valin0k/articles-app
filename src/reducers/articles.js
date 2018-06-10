@@ -1,7 +1,7 @@
-import {articles} from '../sampleArticles'
-import {DELETE_ARTICLE} from 'constants'
+import {normalizedArticles} from '../sampleArticles'
+import {DELETE_ARTICLE} from '../constants/actions'
 
-const defaultState = articles || []
+const defaultState = normalizedArticles || []
 
 export default (state = defaultState, action) => {
   const {type, payload} = action

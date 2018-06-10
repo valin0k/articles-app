@@ -18,14 +18,15 @@ class CommentList extends Component {
     const {comments} = this.props
     const {isOpen} = this.state
     if(!comments) return 'No comments yet'
+
     return(
       <Fragment>
         <button onClick={this.handleToggleComments}>
           {isOpen ? 'Close' : 'Open'} comments
         </button>
         <ul>
-          {isOpen && comments.map(comment => (
-            <Comment comment={comment} key={comment.id} />
+          {isOpen && comments.map(id => (
+            <Comment id={id} key={id} />
           ))}
           {isOpen && <CommentForm />}
         </ul>

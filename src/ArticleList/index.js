@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Article from '../Article'
+import {articlesSelector} from '../selectors'
 import accordion from '../decorators/accordion'
 
 class ArticleList extends Component {
@@ -11,10 +12,10 @@ class ArticleList extends Component {
     handleToggleItem: PropTypes.func
   }
 
-  render() {
+  render () {
     const {articles} = this.props
     const {openItemId, handleToggleItem} = this.props
-    return(
+    return (
       <ul>
         {articles.map(article => (
           <Article
@@ -28,15 +29,6 @@ class ArticleList extends Component {
   }
 }
 
-const filtrateArticles = (articles, filters) => {
-  const {select, dateRange} = filters
-  return articles.filter(article => (
-    (!select.length || select.some(selected => selected.value === article.id))
-    && (!dateRange.from || Date.parse(article.date) > Date.parse(dateRange.from))
-    && (!dateRange.to || Date.parse(article.date) < Date.parse(dateRange.to))
-  ))
-}
-
-export default connect(({articles, filters}) => ({
-  articles: filtrateArticles(articles, filters)
+export default connect((state) => ({
+  articles: articlesSelector(state)
 }))(accordion(ArticleList))

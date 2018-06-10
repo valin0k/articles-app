@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
+
 import CommentList from '../CommentList'
+import {deleteArticle} from '../AC'
 
 class Article extends Component {
   static propTypes = {
@@ -13,20 +16,25 @@ class Article extends Component {
     <CommentList key={2} comments={comments} />
   ]
 
-  handleArticleClick = e => {
+  handleToggleOpen = e => {
     this.props.toggleOpen(this.props.article.id)
   }
 
-  render() {
+  handleDelete = () => {
+    this.props.deleteArticle(this.props.article.id)
+  }
+
+  render () {
     const {article, isOpen} = this.props
-    return(
+    return (
       <li>
         <b>{article.title}</b>
-        <button onClick={this.handleArticleClick}>{isOpen ? 'Close' : 'Open'}</button>
+        <button onClick={this.handleToggleOpen}>{isOpen ? 'Close' : 'Open'}</button>
+        <button onClick={this.handleDelete}>Delete article</button>
         {isOpen && this.getArticleBody(article)}
       </li>
     )
   }
 }
 
-export default Article
+export default connect(null, {deleteArticle})(Article)
