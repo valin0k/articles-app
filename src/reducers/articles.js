@@ -1,10 +1,8 @@
 import {normalizedArticles} from '../sampleArticles'
-import {DELETE_ARTICLE, ADD_COMMENT} from '../constants/actions'
+import {DELETE_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICLES} from '../constants/actions'
 import {arrToMap} from '../helpers'
 
-const defaultState = arrToMap(normalizedArticles) || {}
-
-export default (state = defaultState, action) => {
+export default (state = {}, action) => {
   const {type, payload} = action
 
   switch (type) {
@@ -18,6 +16,8 @@ export default (state = defaultState, action) => {
           ...state[payload.articleId],
           comments: state[payload.articleId].comments.concat([payload.id])
         }}
+    case LOAD_ALL_ARTICLES:
+      return {...state, ...arrToMap(action.data)}
   }
 
   return state

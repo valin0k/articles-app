@@ -2,6 +2,7 @@ import {
   SET_SELECT_FILTER,
   SET_DATE_FILTER,
   DELETE_ARTICLE,
+  LOAD_ALL_ARTICLES,
   ADD_COMMENT
 } from '../constants/actions'
 
@@ -36,5 +37,12 @@ export function addComment(comment, articleId) {
       comment,
       articleId
     }
+  }
+}
+
+export function loadAllArticles() {
+  return {
+    type: LOAD_ALL_ARTICLES,
+    callApi: '/api/article'
   }
 }
