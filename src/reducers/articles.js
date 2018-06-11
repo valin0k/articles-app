@@ -31,11 +31,9 @@ export default (state = defaultState, action) => {
     case DELETE_ARTICLE:
       return state.deleteIn(['entities', payload.id])
     case ADD_COMMENT:
-      return {...state,
-        [payload.articleId]: {
-          ...state[payload.articleId],
-          comments: state[payload.articleId].comments.concat([payload.id])
-        }}
+      return state.updateIn(['entities', payload.articleId, 'comments'], comments => (
+        comments.concat([payload.id])
+      ))
     case LOAD_ALL_ARTICLES + START:
       return state.set('loading', true)
     case LOAD_ALL_ARTICLES + SUCCESS:

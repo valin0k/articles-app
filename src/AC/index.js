@@ -4,7 +4,7 @@ import {
   DELETE_ARTICLE,
   LOAD_ALL_ARTICLES,
   LOAD_ARTICLE,
-  ADD_COMMENT
+  ADD_COMMENT, LOAD_ARTICLE_COMMENTS
 } from '../constants/actions'
 
 export function deleteArticle(id) {
@@ -52,6 +52,14 @@ export function loadArticle (id) {
   return {
     type: LOAD_ARTICLE,
     callApi: `/api/article/${id}`,
+    payload: {id}
+  }
+}
+
+export function loadArticleComments (id) {
+  return {
+    type: LOAD_ARTICLE_COMMENTS,
+    callApi: `/api/comment?article=${id}`,
     payload: {id}
   }
 }

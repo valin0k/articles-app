@@ -1,5 +1,9 @@
 import React, {Component, Fragment} from 'react'
 import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
+
+import Loader from '../Loader'
+import {loadArticleComments} from '../AC'
 import Comment from '../Comment'
 import CommentForm from '../CommentForm'
 
@@ -12,11 +16,17 @@ class CommentList extends Component {
     isOpen: false
   }
 
+  componentDidUpdate() {
+    const {loaded, loading, articleId, loadArticleComments} = this.props
+    !loading && !loaded && this.state.isOpen && loadArticleComments(articleId)
+  }
+
   handleToggleComments = e => this.setState({isOpen: !this.state.isOpen})
 
   render() {
-    const {comments, articleId} = this.props
+    const {comments, articleId, loading, loaded} = this.props
     const {isOpen} = this.state
+    if(loading) return <Loader/>
     if(!comments) return 'No comments yet'
 
     return(
@@ -25,7 +35,7 @@ class CommentList extends Component {
           {isOpen ? 'Close' : 'Open'} comments
         </button>
         <ul>
-          {isOpen && comments.map(id => (
+          {isOpen && loaded && comments.map(id => (
             <Comment id={id} key={id} />
           ))}
           {isOpen && <CommentForm articleId={articleId} />}
@@ -35,4 +45,7 @@ class CommentList extends Component {
   }
 }
 
-export default CommentList
+export default connect((state, props) => ({
+  loaded: state.comments.loaded.includes(props.articleId),
+  loading: state.comments.loading
+}), {loadArticleComments})(CommentList)

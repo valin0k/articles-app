@@ -20,9 +20,9 @@ class ArticleList extends Component {
   }
 
   render () {
-    const {articles} = this.props
+    const {articles, loading} = this.props
     const {openItemId, handleToggleItem} = this.props
-    if(!articles.length) return <Loader />
+    if(loading) return <Loader />
     return (
       <ul>
         {articles.map(article => (
