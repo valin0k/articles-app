@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "css-loader": "^0.28.11",
+    "immutable": "^3.8.2",
     "react": "*",
     "react-day-picker": "^7.1.9",
     "react-dom": "*",

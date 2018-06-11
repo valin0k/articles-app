@@ -1,10 +1,11 @@
-export const arrToMap = arr => (
+import {Map, OrderedMap} from 'immutable'
+
+export const arrToMap = (arr, DataRecord = Map) => (
   arr.reduce((acc, item) => {
-    acc[item.id] = item
-    return acc
-  }, {})
+    return acc.set(item.id, new DataRecord(item))
+  }, new OrderedMap({}))
 )
 
 export const mapToArr = obj => (
-  Object.values(obj)
+  obj.valueSeq().toArray()
 )
