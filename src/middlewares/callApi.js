@@ -1,4 +1,4 @@
-import {LOAD_ALL_ARTICLES, START, SUCCESS, FAIL} from '../constants/actions'
+import {START, SUCCESS} from '../constants/actions'
 
 export default store => next => action => {
   const {callApi} = action
@@ -6,7 +6,7 @@ export default store => next => action => {
 
   next({
     ...action,
-    type: START + LOAD_ALL_ARTICLES
+    type: action.type + START
   })
 
   setTimeout(() => {
@@ -15,6 +15,6 @@ export default store => next => action => {
       .then(data => next({
         ...action,
         data,
-        type: SUCCESS + LOAD_ALL_ARTICLES}))
+        type: action.type + SUCCESS}))
   }, 500)
 }
