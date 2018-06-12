@@ -4,7 +4,7 @@ import {
   ADD_COMMENT,
   LOAD_ALL_ARTICLES,
   START,
-  SUCCESS, LOAD_ARTICLE
+  SUCCESS, LOAD_ARTICLE, LOAD_ARTICLE_COMMENTS
 } from '../constants/actions'
 import {arrToMap} from '../helpers'
 import {OrderedMap, Record} from 'immutable'
@@ -20,6 +20,8 @@ const ArticleRecord = Record({
   text: null,
   date: null,
   id: null,
+  loadedComments: false,
+  loadingComments: false,
   loading: false,
   comments: []
 })
@@ -42,11 +44,18 @@ export default (state = defaultState, action) => {
         .set('loading', false)
         .set('loaded', true)
     case LOAD_ARTICLE + START:
-      return state.setIn(['entities', payload.id, 'loading'], true)
+      return state
+        .setIn(['entities', payload.id, 'loading'], true)
     case LOAD_ARTICLE + SUCCESS:
       return state
         .setIn(['entities', payload.id], new ArticleRecord(action.data))
         .setIn(['entities', payload.id, 'loading'], false)
+    case LOAD_ARTICLE_COMMENTS + START:
+      return state.setIn(['entities', payload.id, 'loadingComments'], true)
+    case LOAD_ARTICLE_COMMENTS + SUCCESS:
+      return state
+        .setIn(['entities', payload.id, 'loadingComments'], false)
+        .setIn(['entities', payload.id, 'loadedComments'], true)
   }
 
   return state

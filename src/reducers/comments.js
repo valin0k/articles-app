@@ -4,8 +4,8 @@ import {ADD_COMMENT, LOAD_ARTICLE_COMMENTS, START, SUCCESS} from '../constants/a
 
 const defaultState = new Record({
   entities: new OrderedMap({}),
-  loading: false,
-  loaded: []
+  pagination: false,
+  total: []
 })()
 
 const CommentRecord = Record({
@@ -22,13 +22,9 @@ export default (state = defaultState, action) => {
       return state.updateIn(['entities'], entities => (
         entities.merge({[payload.id]: new CommentRecord(payload.comment)})
       ))
-    case LOAD_ARTICLE_COMMENTS + START:
-      return state.set('loading', true)
     case LOAD_ARTICLE_COMMENTS + SUCCESS:
       return state
         .update('entities', entities => entities.merge(arrToMap(action.data, CommentRecord)))
-        .set('loading', false)
-        .update('loaded', loaded => loaded.concat(payload.id))
   }
 
   return state

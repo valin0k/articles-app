@@ -46,6 +46,6 @@ class CommentList extends Component {
 }
 
 export default connect((state, props) => ({
-  loaded: state.comments.loaded.includes(props.articleId),
-  loading: state.comments.loading
+  loaded: state.articles.entities.get(props.articleId).loadedComments,
+  loading: state.articles.entities.get(props.articleId).loadingComments
 }), {loadArticleComments})(CommentList)

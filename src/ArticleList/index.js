@@ -27,12 +27,11 @@ class ArticleList extends Component {
     return (
       <ul>
         {articles.map(article => (
-          <li>
+          <li key={article.id}>
             <NavLink to={`/articles/${article.id}`} activeStyle={activeStyle}>
               {article.title}
             </NavLink>
           </li>
-
         ))}
       </ul>
     )

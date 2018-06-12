@@ -19,9 +19,9 @@ class Article extends Component {
     }
   }
 
-  getArticleBody = ({text, comments, id}) => [
+  getArticleBody = ({text, comments}) => [
     <div key={1}>{text}</div>,
-    <CommentList key={2} articleId={id} comments={comments} />
+    <CommentList key={2} articleId={this.props.id} comments={comments} />
   ]
 
   handleDelete = e => {
