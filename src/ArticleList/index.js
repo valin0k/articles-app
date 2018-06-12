@@ -1,11 +1,13 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import Article from '../Article'
+import {NavLink} from 'react-router-dom'
 import {loadAllArticles} from '../AC'
 import {articlesSelector} from '../selectors'
 import accordion from '../decorators/accordion'
 import Loader from '../Loader'
+
+const activeStyle = {backgroundColor: '#c0ccff'}
 
 class ArticleList extends Component {
   static propTypes = {
@@ -21,16 +23,16 @@ class ArticleList extends Component {
 
   render () {
     const {articles, loading} = this.props
-    const {openItemId, handleToggleItem} = this.props
     if(loading) return <Loader />
     return (
       <ul>
         {articles.map(article => (
-          <Article
-            article={article}
-            isOpen={article.id === openItemId}
-            toggleOpen={handleToggleItem}
-            key={article.id} />
+          <li>
+            <NavLink to={`/articles/${article.id}`} activeStyle={activeStyle}>
+              {article.title}
+            </NavLink>
+          </li>
+
         ))}
       </ul>
     )
