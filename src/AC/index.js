@@ -3,7 +3,7 @@ import {
   SET_DATE_FILTER,
   DELETE_ARTICLE,
   LOAD_ALL_ARTICLES,
-  LOAD_ARTICLE,
+  LOAD_ARTICLE, LOAD_COMMENTS,
   ADD_COMMENT, LOAD_ARTICLE_COMMENTS
 } from '../constants/actions'
 
@@ -61,5 +61,13 @@ export function loadArticleComments (id) {
     type: LOAD_ARTICLE_COMMENTS,
     callApi: `/api/comment?article=${id}`,
     payload: {id}
+  }
+}
+
+export function loadComments({limit, offset, page}) {
+  return {
+    type: LOAD_COMMENTS,
+    callApi: `/api/comment?limit=${limit}&offset=${offset}`,
+    payload: {page}
   }
 }

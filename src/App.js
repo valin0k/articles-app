@@ -1,9 +1,10 @@
 import React, {Component, Fragment} from 'react'
 import {render} from 'react-dom'
 import {Provider} from 'react-redux'
-import {HashRouter as Router, Route, NavLink, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route, NavLink, Switch} from 'react-router-dom'
 import Articles from './Routes/Articles'
 import Filters from './Filters'
+import Comments from './Routes/Comments'
 import store from './store'
 import NotFound from './NotFound'
 
@@ -16,10 +17,12 @@ class App extends Component {
         <Router>
           <Fragment>
             <ul>
+              <li><NavLink to='/comments' activeStyle={activeStyle}>Comments</NavLink></li>
               <li><NavLink to='/filters' activeStyle={activeStyle}>Filters</NavLink></li>
               <li><NavLink to='/articles' activeStyle={activeStyle}>Articles</NavLink></li>
             </ul>
             <Switch>
+              <Route component={Comments} path='/comments' />
               <Route component={Filters} path='/filters' />
               <Route component={Articles} path='/articles' />
               <Route component={NotFound} path='*'/>
