@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import ReactSelect from 'react-select'
 import {connect} from 'react-redux'
-import {setSelectFilter} from '../AC'
-import {mapToArr} from '../helpers'
+import {setSelectFilter} from '../../AC/index'
+import {mapToArr} from '../../helpers'
 
 import 'react-select/dist/react-select.css'
 

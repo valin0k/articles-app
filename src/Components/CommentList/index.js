@@ -2,11 +2,11 @@ import React, {Component, Fragment} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 
-import Loader from '../Loader'
-import {loadArticleComments, loadComments} from '../AC'
-import Comment from '../Comment'
-import CommentForm from '../CommentForm'
-import {getPagination} from '../helpers'
+import Loader from '../Loader/index'
+import {loadArticleComments, loadComments} from '../../AC/index'
+import Comment from '../Comment/index'
+import CommentForm from '../CommentForm/index'
+import {getPagination} from '../../helpers'
 
 class CommentList extends Component {
   static propTypes = {

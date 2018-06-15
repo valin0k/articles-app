@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import Loader from '../Loader'
+import Loader from '../Loader/index'
 
-import CommentList from '../CommentList'
-import {deleteArticle, loadArticle} from '../AC'
+import CommentList from '../CommentList/index'
+import {deleteArticle, loadArticle} from '../../AC/index'
 
 class Article extends Component {
   static propTypes = {

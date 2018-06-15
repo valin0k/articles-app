@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {commentSelectorFactory} from '../selectors'
+import {commentSelectorFactory} from '../../selectors/index'
 
 const Comment = ({comment}) => (
   <li>

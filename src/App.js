@@ -3,10 +3,10 @@ import {render} from 'react-dom'
 import {Provider} from 'react-redux'
 import {BrowserRouter as Router, Route, NavLink, Switch} from 'react-router-dom'
 import Articles from './Routes/Articles'
-import Filters from './Filters'
+import Filters from './Components/Filters'
 import Comments from './Routes/Comments'
 import store from './store'
-import NotFound from './NotFound'
+import NotFound from './Components/NotFound'
 
 const activeStyle={backgroundColor: '#c0ccff'}
 

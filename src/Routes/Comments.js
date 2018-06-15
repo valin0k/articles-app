@@ -1,8 +1,8 @@
 import React, {Component, Fragment} from 'react'
 import {Route} from 'react-router-dom'
 import {connect} from 'react-redux'
-import CommentList from '../CommentList'
-import Pagination from '../Pagination'
+import CommentList from '../Components/CommentList'
+import Pagination from '../Components/Pagination'
 
 class Comments extends Component{
 

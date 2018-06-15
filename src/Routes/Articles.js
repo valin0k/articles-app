@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import {Route} from 'react-router-dom'
-import ArticleList from '../ArticleList'
-import Article from '../Article'
+import ArticleList from '../Components/ArticleList'
+import Article from '../Components/Article'
 
 class Articles extends Component{
   getIndex = (route) => {

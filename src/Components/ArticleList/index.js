@@ -2,10 +2,10 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
-import {loadAllArticles} from '../AC'
-import {articlesSelector} from '../selectors'
-import accordion from '../decorators/accordion'
-import Loader from '../Loader'
+import {loadAllArticles} from '../../AC/index'
+import {articlesSelector} from '../../selectors/index'
+import accordion from '../../decorators/accordion'
+import Loader from '../Loader/index'
 
 const activeStyle = {backgroundColor: '#c0ccff'}
 

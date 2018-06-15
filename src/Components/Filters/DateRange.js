@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import DayPicker, { DateUtils } from 'react-day-picker'
 import {connect} from 'react-redux'
 
-import {setDateFilter} from '../AC'
+import {setDateFilter} from '../../AC/index'
 
 import 'react-day-picker/lib/style.css'
 

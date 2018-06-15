@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {addComment} from '../AC'
+import {addComment} from '../../AC/index'
 import {connect} from 'react-redux'
 
 import './style.css'
