@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react'
-import {Route} from 'react-router-dom'
+import {Route, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import CommentList from '../Components/CommentList'
 import Pagination from '../Components/Pagination'
@@ -9,10 +9,6 @@ class Comments extends Component{
   getComments = ({match}) => {
     return <CommentList page={match.params.page} />
   }
-
-  getIndex = () => (
-    <h3>Please, select comments page</h3>
-  )
 
   getPagination = ({match}) => {
     return <Pagination
@@ -25,7 +21,7 @@ class Comments extends Component{
   render() {
     return (
       <Fragment>
-        <Route path='/comments' render={this.getIndex} exact />
+        <Redirect from='/comments' to='/comments/1' exact />
         <Route path='/comments/:page' render={this.getComments}/>
         <Route path='*' render={this.getPagination}/>
       </Fragment>

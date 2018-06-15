@@ -1,0 +1,10 @@
+.navMenu {
+    display: flex;
+    list-style: none;
+    border-bottom: 1px solid #00000030;
+    padding: 10px 0;
+}
+
+.navMenu li {
+    margin: 0 10px;
+}

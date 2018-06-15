@@ -6,32 +6,46 @@ import Articles from './Routes/Articles'
 import Filters from './Components/Filters'
 import Comments from './Routes/Comments'
 import store from './store'
+import {Provider as LangProvider} from './LocalizationContext'
 import NotFound from './Components/NotFound'
-
-const activeStyle={backgroundColor: '#c0ccff'}
+import LanguageSwitcher from './Components/LanguageSwitcher'
+import {languages} from './constants/localize'
+import NavMenu from './Components/NavMenu'
 
 class App extends Component {
-  render () {
-    return (
-      <Provider store={store}>
-        <Router>
-          <Fragment>
-            <ul>
-              <li><NavLink to='/comments' activeStyle={activeStyle}>Comments</NavLink></li>
-              <li><NavLink to='/filters' activeStyle={activeStyle}>Filters</NavLink></li>
-              <li><NavLink to='/articles' activeStyle={activeStyle}>Articles</NavLink></li>
-            </ul>
-            <Switch>
-              <Route component={Comments} path='/comments' />
-              <Route component={Filters} path='/filters' />
-              <Route component={Articles} path='/articles' />
-              <Route component={NotFound} path='*'/>
-            </Switch>
-          </Fragment>
-        </Router>
-      </Provider>
-    )
-  }
+    state = {
+      lang: 'en'
+    }
+    handleChangeLang = lang => e => {
+      this.setState({lang})
+    }
+
+    render () {
+      const providerValue = {
+        languages,
+        currentLang: this.state.lang,
+        handleChangeLang: this.handleChangeLang
+      }
+
+      return (
+        <Provider store={store}>
+          <LangProvider value={providerValue}>
+            <Router>
+              <Fragment>
+                <LanguageSwitcher/>
+                <NavMenu />
+                <Switch>
+                  <Route component={Comments} path='/comments' />
+                  <Route component={Filters} path='/filters' />
+                  <Route component={Articles} path='/articles' />
+                  <Route component={NotFound} path='*'/>
+                </Switch>
+              </Fragment>
+            </Router>
+          </LangProvider>
+        </Provider>
+      )
+    }
 }
 
 render(

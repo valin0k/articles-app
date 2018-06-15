@@ -1,0 +1,23 @@
+.languages-switcher {
+    display: flex;
+    list-style: none;
+}
+
+.languages-switcher li {
+    padding: 5px 10px;
+    border: 1px solid #00000030;
+    cursor: pointer;
+}
+
+.languages-switcher li:first-child {
+    border-right: none;
+    border-radius: 10px 0 0 10px;
+}
+
+.languages-switcher li:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.languages-switcher li.active {
+    background: #0000001c;
+}

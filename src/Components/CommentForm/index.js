@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {addComment} from '../../AC/index'
 import {connect} from 'react-redux'
+import {Consumer as LangConsumer} from '../../LocalizationContext'
 
 import './style.css'
 
@@ -35,8 +36,6 @@ class CommentForm extends Component {
     ))
   )
 
-
-
   getClassName = ({name, min, max}) => (
     !this.state[name].length ||
     this.state[name].length > min &&
@@ -66,7 +65,9 @@ class CommentForm extends Component {
           />
         ))}
         <button onClick={this.handleFormSubmit}>
-          Submit comment
+          <LangConsumer>
+            {({languages, currentLang}) => languages[currentLang].submitComment}
+          </LangConsumer>
         </button>
       </ul>
     )

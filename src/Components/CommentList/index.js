@@ -7,6 +7,7 @@ import {loadArticleComments, loadComments} from '../../AC/index'
 import Comment from '../Comment/index'
 import CommentForm from '../CommentForm/index'
 import {getPagination} from '../../helpers'
+import {Consumer as LangConsumer} from '../../LocalizationContext'
 
 class CommentList extends Component {
   static propTypes = {
@@ -35,13 +36,13 @@ class CommentList extends Component {
 
   handleToggleComments = e => this.setState({isOpen: !this.state.isOpen})
 
-  getArticleComments = ({id, isOpen, loaded, articleId, comments}) => {
-    if(!comments) return 'No comments yet'
+  getArticleComments = ({id, isOpen, loaded, articleId, comments, languages, currentLang}) => {
+    if(!comments) return languages[currentLang].noComments
 
     return (
       <Fragment>
         <button onClick={this.handleToggleComments}>
-          {isOpen ? 'Close' : 'Open'} comments
+          {isOpen ? languages[currentLang].close : languages[currentLang].open} {languages[currentLang].comments}
         </button>
         <ul>
           {isOpen && loaded && comments.map(id => (
@@ -72,11 +73,17 @@ class CommentList extends Component {
     if(loading) return <Loader/>
 
     return(
-      <Fragment>
-        {articleId
-          ? this.getArticleComments({...this.state, ...this.props})
-          : this.getComments(this.props)}
-      </Fragment>
+
+        <LangConsumer>
+          {(context) => (
+            <Fragment>
+            {articleId
+              ? this.getArticleComments({...this.state, ...this.props, ...context})
+              : this.getComments({...this.props, ...context})}
+            </Fragment>
+          )}
+        </LangConsumer>
+
     )
   }
 }

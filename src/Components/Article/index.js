@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Loader from '../Loader/index'
+import {Consumer as LangConsumer} from '../../LocalizationContext'
 
 import CommentList from '../CommentList/index'
 import {deleteArticle, loadArticle} from '../../AC/index'
@@ -36,7 +37,9 @@ class Article extends Component {
     return (
       <li>
         <b>{article.title}</b>
-        <button onClick={this.handleDelete}>Delete article</button>
+        <LangConsumer>
+          {({languages, currentLang}) => <button onClick={this.handleDelete}>{languages[currentLang].deleteArticle}</button>}
+        </LangConsumer>
         {isOpen && this.getArticleBody(article)}
       </li>
     )

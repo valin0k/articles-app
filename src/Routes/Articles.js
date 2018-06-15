@@ -2,10 +2,15 @@ import React, {Component, Fragment} from 'react'
 import {Route} from 'react-router-dom'
 import ArticleList from '../Components/ArticleList'
 import Article from '../Components/Article'
+import {Consumer as LangConsumer} from '../LocalizationContext'
 
 class Articles extends Component{
   getIndex = (route) => {
-    return <h3>Select article</h3>
+    return (<h3>
+      <LangConsumer>
+        {({languages, currentLang}) => languages[currentLang].selectArticle}
+      </LangConsumer>
+    </h3>)
   }
 
   getArticle = ({match}) => {
