@@ -1,10 +1,11 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {Consumer as LangConsumer} from '../../LocalizationContext'
+import './style.css'
 
 export default () => (
-  <h2>
+  <h2 className='notFound'>
     <LangConsumer>
-      {({currentLang, languages}) => languages[currentLang].notFound}
+      {({language}) => language.notFound}
     </LangConsumer>
     :(
   </h2>

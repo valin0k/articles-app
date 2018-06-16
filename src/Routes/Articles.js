@@ -6,11 +6,12 @@ import {Consumer as LangConsumer} from '../LocalizationContext'
 
 class Articles extends Component{
   getIndex = (route) => {
-    return (<h3>
-      <LangConsumer>
-        {({language}) => language.selectArticle}
-      </LangConsumer>
-    </h3>)
+    return (
+      <h3>
+        <LangConsumer>
+          {({language}) => language.selectArticle}
+        </LangConsumer>
+      </h3>)
   }
 
   getArticle = ({match}) => {
@@ -20,13 +21,12 @@ class Articles extends Component{
   }
 
   render() {
-    return (
+    return(
       <Fragment>
-        <ArticleList />
+        <Route path='*' component={ArticleList}/>
         <Route path='/articles' render={this.getIndex} exact />
         <Route path='/articles/:id' render={this.getArticle} />
       </Fragment>
-
     )
   }
 }
