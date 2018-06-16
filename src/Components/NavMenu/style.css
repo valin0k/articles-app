@@ -2,9 +2,27 @@
     display: flex;
     list-style: none;
     border-bottom: 1px solid #00000030;
-    padding: 10px 0;
+    padding: 0;
 }
 
 .navMenu li {
-    margin: 0 10px;
+    padding: 9px 0;
 }
+
+.navMenu li a{
+    padding: 10px 15px;
+    cursor: pointer;
+    border: 1px solid #00000030;
+    border-bottom: none;
+    background: #dedede94;
+    z-index: 1;
+    margin-bottom: -1px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+
+.navMenu .active {
+    background: #fff;
+}
+

@@ -11,7 +11,7 @@ export default () => (
 
 function getLoader() {
   return (
-    <div className='loader-wrapper'>
+    <div className='loaderWrapper'>
       <LangConsumer>
         {({language}) => <h1>{language.loading} ...</h1>}
       </LangConsumer>

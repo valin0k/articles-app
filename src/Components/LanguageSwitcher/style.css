@@ -1,6 +1,7 @@
 .languages-switcher {
     display: flex;
     list-style: none;
+    padding: 0;
 }
 
 .languages-switcher li {

@@ -2,16 +2,18 @@ import React, {Component, Fragment} from 'react'
 import {render} from 'react-dom'
 import {Provider} from 'react-redux'
 import {BrowserRouter as Router, Route, NavLink, Switch} from 'react-router-dom'
-import Articles from './Routes/Articles'
-import Filters from './Components/Filters'
-import Comments from './Routes/Comments'
-import store from './store'
-import {Provider as LangProvider, languages} from './LocalizationContext'
-import NotFound from './Components/NotFound'
-import LanguageSwitcher from './Components/LanguageSwitcher'
-import NavMenu from './Components/NavMenu'
+import Articles from '../../Routes/Articles'
+import Filters from '../Filters/index'
+import Comments from '../../Routes/Comments'
+import store from '../../store/index'
+import {Provider as LangProvider, languages} from '../../LocalizationContext'
+import NotFound from '../NotFound/index'
+import LanguageSwitcher from '../LanguageSwitcher/index'
+import NavMenu from '../NavMenu/index'
 
-class App extends Component {
+import './style.css'
+
+class Index extends Component {
     state = {
       lang: 'en'
     }
@@ -28,7 +30,7 @@ class App extends Component {
         <Provider store={store}>
           <LangProvider value={providerValue}>
             <Router>
-              <Fragment>
+              <div className='appContainer'>
                 <LanguageSwitcher/>
                 <NavMenu />
                 <Switch>
@@ -37,7 +39,7 @@ class App extends Component {
                   <Route component={Articles} path='/articles' />
                   <Route component={NotFound} path='*'/>
                 </Switch>
-              </Fragment>
+              </div>
             </Router>
           </LangProvider>
         </Provider>
@@ -46,6 +48,6 @@ class App extends Component {
 }
 
 render(
-  <App />,
+  <Index />,
   document.getElementById('root')
 )

@@ -1,0 +1,10 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.appContainer {
+    margin: 0 auto;
+    max-width: 640px;
+    padding: 20px;
+    background: #fff;
+}

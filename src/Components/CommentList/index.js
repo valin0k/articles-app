@@ -37,7 +37,7 @@ class CommentList extends Component {
   handleToggleComments = e => this.setState({isOpen: !this.state.isOpen})
 
   getArticleComments = ({id, isOpen, loaded, articleId, comments, language}) => {
-    if(!comments) return language.noComments
+    if(!comments) return null
 
     return (
       <Fragment>
@@ -45,9 +45,10 @@ class CommentList extends Component {
           {isOpen ? language.close : language.open} {language.comments}
         </button>
         <ul>
-          {isOpen && loaded && comments.map(id => (
-            <Comment id={id} key={id} />
-          ))}
+          {!comments.length && isOpen
+            ? <div>{language.noComments}</div>
+            : isOpen && loaded && comments.map(id => <Comment id={id} key={id} />)
+          }
           {isOpen && <CommentForm articleId={articleId} />}
         </ul>
       </Fragment>
@@ -68,22 +69,20 @@ class CommentList extends Component {
   }
 
   render() {
-    const {comments, articleId, loading, loaded} = this.props
+    const {articleId, loading} = this.props
 
     if(loading) return <Loader/>
 
     return(
-
-        <LangConsumer>
-          {(context) => (
-            <Fragment>
+      <LangConsumer>
+        {(context) => (
+          <Fragment>
             {articleId
               ? this.getArticleComments({...this.state, ...this.props, ...context})
               : this.getComments({...this.props, ...context})}
-            </Fragment>
-          )}
-        </LangConsumer>
-
+          </Fragment>
+        )}
+      </LangConsumer>
     )
   }
 }

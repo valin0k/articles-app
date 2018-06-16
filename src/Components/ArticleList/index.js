@@ -4,16 +4,17 @@ import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import {loadAllArticles} from '../../AC/index'
 import {articlesSelector} from '../../selectors/index'
-import accordion from '../../decorators/accordion'
 import Loader from '../Loader/index'
 
-const activeStyle = {backgroundColor: '#c0ccff'}
+import './style.css'
 
 class ArticleList extends Component {
   static propTypes = {
-    // HOC
-    openItemId: PropTypes.string,
-    handleToggleItem: PropTypes.func
+    // connect
+    loadAllArticles: PropTypes.func,
+    loaded: PropTypes.bool,
+    loading: PropTypes.bool,
+    articles: PropTypes.array
   }
 
   componentDidMount() {
@@ -25,10 +26,10 @@ class ArticleList extends Component {
     const {articles, loading} = this.props
     if(loading) return <Loader />
     return (
-      <ul>
+      <ul className='articlesList'>
         {articles.map(article => (
           <li key={article.id}>
-            <NavLink to={`/articles/${article.id}`} activeStyle={activeStyle}>
+            <NavLink to={`/articles/${article.id}`}>
               {article.title}
             </NavLink>
           </li>
@@ -42,4 +43,4 @@ export default connect((state) => ({
   articles: articlesSelector(state),
   loaded: state.articles.loaded,
   loading: state.articles.loading
-}), {loadAllArticles})(accordion(ArticleList))
+}), {loadAllArticles})(ArticleList)

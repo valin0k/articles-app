@@ -9,7 +9,6 @@ import {deleteArticle, loadArticle} from '../../AC/index'
 
 class Article extends Component {
   static propTypes = {
-    isOpen: PropTypes.bool,
     id: PropTypes.string
   }
 
@@ -30,7 +29,7 @@ class Article extends Component {
   }
 
   render () {
-    const {article, isOpen} = this.props
+    const {article} = this.props
     if(!article) return null
     if(article.loading) return <Loader/>
 
@@ -40,7 +39,7 @@ class Article extends Component {
         <LangConsumer>
           {({language}) => <button onClick={this.handleDelete}>{language.deleteArticle}</button>}
         </LangConsumer>
-        {isOpen && this.getArticleBody(article)}
+        {this.getArticleBody(article)}
       </li>
     )
   }

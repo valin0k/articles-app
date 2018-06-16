@@ -1,4 +1,4 @@
-.loader-wrapper {
+.loaderWrapper {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -11,4 +11,8 @@
     align-items: center;
     justify-content: center;
     color: #000000ad;
+}
+
+.loaderWrapper h1 {
+    font-weight: 100;
 }
