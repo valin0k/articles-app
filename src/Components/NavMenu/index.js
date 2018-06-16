@@ -7,11 +7,11 @@ const activeStyle = {backgroundColor: '#c0ccff'}
 
 export default () => (
   <LangConsumer>
-    {({languages, currentLang}) => (
+    {({language}) => (
       <ul className='navMenu'>
-        <li><NavLink to='/comments' activeStyle={activeStyle}>{languages[currentLang].comments}</NavLink></li>
-        <li><NavLink to='/filters' activeStyle={activeStyle}>{languages[currentLang].filters}</NavLink></li>
-        <li><NavLink to='/articles' activeStyle={activeStyle}>{languages[currentLang].articles}</NavLink></li>
+        <li><NavLink to='/comments' activeStyle={activeStyle}>{language.comments}</NavLink></li>
+        <li><NavLink to='/filters' activeStyle={activeStyle}>{language.filters}</NavLink></li>
+        <li><NavLink to='/articles' activeStyle={activeStyle}>{language.articles}</NavLink></li>
       </ul>
     )}
   </LangConsumer>

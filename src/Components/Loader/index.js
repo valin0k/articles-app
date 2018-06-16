@@ -13,7 +13,7 @@ function getLoader() {
   return (
     <div className='loader-wrapper'>
       <LangConsumer>
-        {({languages, currentLang}) => <h1>{languages[currentLang].loading} ...</h1>}
+        {({language}) => <h1>{language.loading} ...</h1>}
       </LangConsumer>
     </div>
   )

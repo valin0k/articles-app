@@ -66,7 +66,7 @@ class CommentForm extends Component {
         ))}
         <button onClick={this.handleFormSubmit}>
           <LangConsumer>
-            {({languages, currentLang}) => languages[currentLang].submitComment}
+            {({language}) => language.submitComment}
           </LangConsumer>
         </button>
       </ul>

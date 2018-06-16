@@ -8,7 +8,7 @@ class Articles extends Component{
   getIndex = (route) => {
     return (<h3>
       <LangConsumer>
-        {({languages, currentLang}) => languages[currentLang].selectArticle}
+        {({language}) => language.selectArticle}
       </LangConsumer>
     </h3>)
   }

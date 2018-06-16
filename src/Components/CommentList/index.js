@@ -36,13 +36,13 @@ class CommentList extends Component {
 
   handleToggleComments = e => this.setState({isOpen: !this.state.isOpen})
 
-  getArticleComments = ({id, isOpen, loaded, articleId, comments, languages, currentLang}) => {
-    if(!comments) return languages[currentLang].noComments
+  getArticleComments = ({id, isOpen, loaded, articleId, comments, language}) => {
+    if(!comments) return language.noComments
 
     return (
       <Fragment>
         <button onClick={this.handleToggleComments}>
-          {isOpen ? languages[currentLang].close : languages[currentLang].open} {languages[currentLang].comments}
+          {isOpen ? language.close : language.open} {language.comments}
         </button>
         <ul>
           {isOpen && loaded && comments.map(id => (

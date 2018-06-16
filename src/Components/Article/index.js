@@ -38,7 +38,7 @@ class Article extends Component {
       <li>
         <b>{article.title}</b>
         <LangConsumer>
-          {({languages, currentLang}) => <button onClick={this.handleDelete}>{languages[currentLang].deleteArticle}</button>}
+          {({language}) => <button onClick={this.handleDelete}>{language.deleteArticle}</button>}
         </LangConsumer>
         {isOpen && this.getArticleBody(article)}
       </li>

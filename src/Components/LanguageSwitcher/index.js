@@ -5,16 +5,16 @@ import './style.css'
 export default () => (
   <div>
     <LangConsumer>
-      {({handleChangeLang, currentLang}) => (
+      {({selected, handleChangeLang}) => (
         <ul className='languages-switcher'>
-          <li className={getClassName('ru', currentLang)} onClick={handleChangeLang('ru')}>Ru</li>
-          <li className={getClassName('en', currentLang)} onClick={handleChangeLang('en')}>En</li>
+          <li className={getClassName('ru', selected)} onClick={handleChangeLang('ru')}>Ru</li>
+          <li className={getClassName('en', selected)} onClick={handleChangeLang('en')}>En</li>
         </ul>
       )}
     </LangConsumer>
   </div>
 )
 
-const getClassName = (linkLang, currentLang) => (
-  linkLang === currentLang ? 'active' : ''
+const getClassName = (linkLang, selected) => (
+  linkLang === selected ? 'active' : ''
 )

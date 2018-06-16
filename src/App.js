@@ -6,25 +6,22 @@ import Articles from './Routes/Articles'
 import Filters from './Components/Filters'
 import Comments from './Routes/Comments'
 import store from './store'
-import {Provider as LangProvider} from './LocalizationContext'
+import {Provider as LangProvider, languages} from './LocalizationContext'
 import NotFound from './Components/NotFound'
 import LanguageSwitcher from './Components/LanguageSwitcher'
-import {languages} from './constants/localize'
 import NavMenu from './Components/NavMenu'
 
 class App extends Component {
     state = {
       lang: 'en'
     }
-    handleChangeLang = lang => e => {
-      this.setState({lang})
-    }
+    handleChangeLang = lang => e => this.setState({lang})
 
     render () {
       const providerValue = {
-        languages,
-        currentLang: this.state.lang,
-        handleChangeLang: this.handleChangeLang
+        language: languages[this.state.lang],
+        handleChangeLang: this.handleChangeLang,
+        selected: this.state.lang
       }
 
       return (
