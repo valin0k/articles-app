@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react'
-import {Route, Redirect} from 'react-router-dom'
+import {Route, Redirect, Switch} from 'react-router-dom'
 import {connect} from 'react-redux'
 import CommentList from '../Components/CommentList'
 import Pagination from '../Components/Pagination'
@@ -20,11 +20,13 @@ class Comments extends Component{
 
   render() {
     return (
-      <Fragment>
+      <Switch>
         <Redirect from='/comments' to='/comments/1' exact />
-        <Route path='/comments/:page' render={this.getComments}/>
-        <Route path='*' render={this.getPagination}/>
-      </Fragment>
+        <Fragment>
+          <Route path='/comments/:page' render={this.getComments}/>
+          <Route path='*' render={this.getPagination}/>
+        </Fragment>
+      </Switch>
     )
   }
 }

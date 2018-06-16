@@ -6,6 +6,7 @@ import {Consumer as LangConsumer} from '../../LocalizationContext'
 
 import CommentList from '../CommentList/index'
 import {deleteArticle, loadArticle} from '../../AC/index'
+import './style.css'
 
 class Article extends Component {
   static propTypes = {
@@ -34,13 +35,13 @@ class Article extends Component {
     if(article.loading) return <Loader/>
 
     return (
-      <li>
+      <div className='articleItem'>
         <b>{article.title}</b>
         <LangConsumer>
           {({language}) => <button onClick={this.handleDelete}>{language.deleteArticle}</button>}
         </LangConsumer>
         {this.getArticleBody(article)}
-      </li>
+      </div>
     )
   }
 }

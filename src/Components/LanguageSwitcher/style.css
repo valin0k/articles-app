@@ -8,6 +8,7 @@
     padding: 5px 10px;
     border: 1px solid #00000030;
     cursor: pointer;
+    background: #0000001c;
 }
 
 .languages-switcher li:first-child {
@@ -20,5 +21,6 @@
 }
 
 .languages-switcher li.active {
-    background: #0000001c;
+    background: #fff;
+    cursor: auto;
 }

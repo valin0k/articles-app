@@ -54,21 +54,24 @@ class CommentForm extends Component {
 
   render () {
     return (
-      <ul>
+      <ul className='commentForm'>
         {FIELDS.map(field => (
-          <input
-            key={field.name}
-            className={this.getClassName(field)}
-            value={this.state[field.name]}
-            placeholder={field.name}
-            onChange={this.handleFieldChange(field.name)}
-          />
+          <li key={field.name}>
+            <input
+              className={this.getClassName(field)}
+              value={this.state[field.name]}
+              placeholder={field.name}
+              onChange={this.handleFieldChange(field.name)}
+            />
+          </li>
         ))}
-        <button onClick={this.handleFormSubmit}>
-          <LangConsumer>
-            {({language}) => language.submitComment}
-          </LangConsumer>
-        </button>
+        <li>
+          <button onClick={this.handleFormSubmit}>
+            <LangConsumer>
+              {({language}) => language.submitComment}
+            </LangConsumer>
+          </button>
+        </li>
       </ul>
     )
   }

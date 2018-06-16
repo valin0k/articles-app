@@ -1,3 +1,27 @@
+.commentForm {
+  list-style: none;
+    padding: 0;
+    margin-top: 25px;
+}
+
 .validate-error {
   border: 1px solid tomato;
+}
+
+.commentForm input {
+    width: calc(100% - 22px);
+    font-weight: 100;
+    font-size: 1rem;
+    padding: 10px;
+    margin-bottom: 10px;
+    outline: none;
+}
+
+.commentForm button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
 }

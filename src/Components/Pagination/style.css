@@ -1,3 +1,25 @@
+.pagination {
+    list-style: none;
+    display: flex;
+    padding: 15px 0 0 0;
+    border-top: 1px solid #00000030;
+}
+
+.pagination li {
+    margin: 0;
+    padding: 0;
+}
+
+.pagination a {
+    color: black;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    font-weight: bold;
+}
+
 .pagination-item {
     padding: 5px 10px;
 }
+

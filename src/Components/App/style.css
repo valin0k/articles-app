@@ -1,10 +1,11 @@
-body {
+body, input, button {
     font-family: 'Open Sans', sans-serif;
 }
 
 .appContainer {
     margin: 0 auto;
     max-width: 640px;
+    min-width: 340px;
     padding: 20px;
     background: #fff;
 }

@@ -8,6 +8,7 @@ import Comment from '../Comment/index'
 import CommentForm from '../CommentForm/index'
 import {getPagination} from '../../helpers'
 import {Consumer as LangConsumer} from '../../LocalizationContext'
+import './style.css'
 
 class CommentList extends Component {
   static propTypes = {
@@ -44,7 +45,7 @@ class CommentList extends Component {
         <button onClick={this.handleToggleComments}>
           {isOpen ? language.close : language.open} {language.comments}
         </button>
-        <ul>
+        <ul className='commentList'>
           {!comments.length && isOpen
             ? <div>{language.noComments}</div>
             : isOpen && loaded && comments.map(id => <Comment id={id} key={id} />)
@@ -60,7 +61,7 @@ class CommentList extends Component {
 
     const commentsIds = pages[page]
     return (
-      <ul>
+      <ul className='commentList'>
         {commentsIds.map(id => (
           <Comment id={id} key={id} />
         ))}

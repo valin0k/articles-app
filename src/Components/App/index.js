@@ -17,7 +17,8 @@ class Index extends Component {
     state = {
       lang: 'en'
     }
-    handleChangeLang = lang => e => this.setState({lang})
+
+    handleChangeLang = lang => e => this.setState((state) => state.lang !== lang && {lang})
 
     render () {
       const providerValue = {
